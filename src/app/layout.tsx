@@ -21,8 +21,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${manrope.className} bg-[#171717]`}>
-          <ThemeProvider>{children}</ThemeProvider>
+        <body className={`${manrope.className} `}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
