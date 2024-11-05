@@ -3,7 +3,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { client } from "@/lib/prisma";
 
-export const verifyAccess = async (workspaceId: string) => {
+export const verifyAccessToWorkspace = async (workspaceId: string) => {
   try {
     const user = await currentUser();
     if (!user) return { status: 403, message: "Unauthorized" };
@@ -34,7 +34,7 @@ export const verifyAccess = async (workspaceId: string) => {
         message: "Success",
         data:{workspace:isUserInWorkspace}
     }
-  } catch (error) {
+  } catch {
     return {
     status:403,
      data: { workspace: null }
