@@ -1,13 +1,20 @@
-import React from 'react'
+import React from "react";
+import { onAuthenticateUser } from "@/actions/user";
+import { redirect } from "next/navigation";
 
 type Props = {
-    params:{workspaceId:string}
-}
+  params: { workspaceId: string };
+  children: React.ReactNode;
+};
 
-const Layout = () => {
-  return (
-    <div>Layout</div>
-  )
-}
+const Layout = async ({ params: { workspaceId }, children }: Props) => {
+    const auth  = await onAuthenticateUser()
+    if(!auth.user?.workspace) redirect('/auth/sign-in');
+    if(!auth.user?.workspace.length) redirect('/auth/sign-in');
 
-export default Layout
+    const hasAccess = await verifyAc
+
+  return <div>Layout</div>;
+};
+
+export default Layout;
